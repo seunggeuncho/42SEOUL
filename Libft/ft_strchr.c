@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 01:54:49 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/27 03:13:49 by seucho           ###   ########.fr       */
+/*   Updated: 2021/12/27 23:58:18 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strchr(const char *s, int c)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == (char)c)
+		if (s[i] == (unsigned char)c)
 			return ((char *)s + i);
 		i++;
 	}

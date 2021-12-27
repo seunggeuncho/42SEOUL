@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/26 22:24:47 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/27 22:26:55 by seucho           ###   ########.fr       */
+/*   Created: 2021/12/27 19:56:57 by seucho            #+#    #+#             */
+/*   Updated: 2021/12/27 21:37:43 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t					i;
+	char	*substr;
 
-	if (!dest && !src)
-		return (0);
-	i = 0;
-	while (i++ < n)
-		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-	return (dest);
+	if (!s)
+		return (NULL);
+	if (ft_strlen(s) < start)
+		return (ft_strdup(""));
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!substr)
+		return (NULL);
+	ft_strlcpy(substr, s + start, len + 1);
+	return (substr);
 }
