@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:10:54 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/28 00:28:20 by seucho           ###   ########.fr       */
+/*   Updated: 2021/12/28 15:07:43 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_start(const char *s1, const char *set)
 		idx++;
 	}
 	return (idx);
-}	
+}
 
 static int	ft_end(const char *s1, const char *set)
 {
