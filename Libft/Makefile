@@ -6,7 +6,7 @@
 #    By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 18:02:44 by seucho            #+#    #+#              #
-#    Updated: 2021/12/28 18:21:28 by seucho           ###   ########.fr        #
+#    Updated: 2021/12/28 18:36:46 by seucho           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,12 +67,11 @@ BONUS	=	ft_lstnew.c			\
 			ft_lstmap.c			\
 			ft_lstdelone.c		\
 
-SRCS	=	$(FILE_1)
-			$(FILE_2)
+SRCS = $(FILE_1) $(FILE_2)
 
-OBJS	=	$(SRCS:.c=.o)
+OBJS = $(SRCS:.c=.o)
 
-OBJS_BONUS	=	$(BONUS:.c=.o)
+OBJS_BONUS = $(BONUS:.c=.o)
 
 all : $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 02:05:06 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/28 02:43:39 by seucho           ###   ########.fr       */
+/*   Updated: 2021/12/28 18:36:01 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	get_num(int *sign, long long *i, int *num)
 		*num = cnt_num(*i) + 1;
 	}
 	else
-		*num = cnt_digits(*i);
+		*num = cnt_num(*i);
 }
 
 char	*ft_itoa(int n)

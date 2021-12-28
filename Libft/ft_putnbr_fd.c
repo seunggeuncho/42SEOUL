@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 03:04:06 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/28 03:12:25 by seucho           ###   ########.fr       */
+/*   Updated: 2021/12/28 18:36:24 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ void	ft_putnbr_fd(int n, int fd)
 		n *= -1;
 	}
 	if (n >= 10)
-		ft_putnbr_fd(nbr / 10, fd);
-	ft_putchar_fd((nbr % 10) + '0', fd);
+		ft_putnbr_fd(n / 10, fd);
+	ft_putchar_fd((n % 10) + '0', fd);
 }

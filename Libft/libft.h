@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 17:00:36 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/28 17:53:07 by seucho           ###   ########.fr       */
+/*   Updated: 2021/12/28 18:29:54 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
-char	**ft_split(char const *s, c);
+char	**ft_split(char const *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int , char));
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
