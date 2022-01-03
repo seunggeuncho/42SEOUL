@@ -6,7 +6,7 @@
 #    By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 18:02:44 by seucho            #+#    #+#              #
-#    Updated: 2021/12/28 18:36:46 by seucho           ###   ########.fr        #
+#    Updated: 2022/01/03 15:19:27 by seucho           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ FILE_2	=	ft_substr.c		\
 			ft_putstr_fd.c	\
 			ft_putendl_fd.c	\
 			ft_putnbr_fd.c	\
+			ft_striteri.c	\
 
 BONUS	=	ft_lstnew.c			\
 			ft_lstsize.c		\

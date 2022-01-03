@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 22:24:47 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/27 22:26:55 by seucho           ###   ########.fr       */
+/*   Updated: 2021/12/30 17:17:19 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t					i;
 
-	if (!dest && !src)
+	if (!dest || !src)
 		return (0);
 	i = 0;
-	while (i++ < n)
+	while (i < n)
+	{
 		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
 	return (dest);
 }

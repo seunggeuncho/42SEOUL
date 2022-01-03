@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 02:26:52 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/27 02:47:04 by seucho           ###   ########.fr       */
+/*   Updated: 2021/12/31 22:50:10 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,20 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	i;
+	unsigned char	*one;
+	unsigned char	*two;
+	size_t			i;
 
 	i = 0;
-	while ((i < n) && (s1[i] || s2[i]))
+	one = (unsigned char *)s1;
+	two = (unsigned char *)s2;
+	while (i < n && one[i] != '\0')
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		if (one[i] != two[i])
+			return (one[i] - two[i]);
 		i++;
 	}
+	if (one[i] == '\0' && i < n)
+		return (one[i] - two[i]);
 	return (0);
 }

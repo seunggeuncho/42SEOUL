@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 23:57:57 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/27 00:25:52 by seucho           ###   ########.fr       */
+/*   Updated: 2021/12/30 17:19:21 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	else
 	{
-		while (i++ < n)
+		while (i < n)
+		{
 			new_dest[n - 1 - i] = new_src[n - 1 - i];
+			i++;
+		}
 	}
 	return (dest);
 }

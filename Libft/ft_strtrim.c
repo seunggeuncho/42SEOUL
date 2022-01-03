@@ -6,13 +6,13 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 23:10:54 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/28 15:07:43 by seucho           ###   ########.fr       */
+/*   Updated: 2022/01/01 04:21:21 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_start(const char *s1, const char *set)
+static size_t	ft_start(const char *s1, const char *set)
 {
 	size_t	len;
 	size_t	idx;
@@ -28,7 +28,7 @@ static int	ft_start(const char *s1, const char *set)
 	return (idx);
 }
 
-static int	ft_end(const char *s1, const char *set)
+static size_t	ft_end(const char *s1, const char *set)
 {
 	size_t	len;
 	size_t	idx;
@@ -50,9 +50,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	start;
 	size_t	end;
 
-	if (!s1)
+	if (s1 == (void *)0)
 		return (0);
-	if (set)
+	if (set == (void *)0)
 		return (ft_strdup(s1));
 	start = ft_start(s1, set);
 	end = ft_end(s1, set);

@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 16:19:50 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/28 16:22:56 by seucho           ###   ########.fr       */
+/*   Updated: 2022/01/03 14:37:55 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*temp;
 
+	if (lst == NULL || del == NULL)
+		return ;
 	while (*lst)
 	{
 		temp = (*lst)->next;

@@ -6,13 +6,13 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 03:31:49 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/27 03:38:09 by seucho           ###   ########.fr       */
+/*   Updated: 2022/01/01 00:15:09 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoid(const char *str)
+int	ft_atoi(const char *str)
 {
 	size_t	i;
 	int		sign;

@@ -6,17 +6,17 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 15:24:09 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/28 15:26:05 by seucho           ###   ########.fr       */
+/*   Updated: 2022/01/03 14:39:32 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_lst	*ft_lstlast(t_list *lst)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (!lst)
+	if (lst == NULL)
 		return (NULL);
-	while (lst->new)
+	while (lst->next != NULL)
 		lst = lst->next;
 	return (lst);
 }

@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 02:51:08 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/28 02:57:36 by seucho           ###   ########.fr       */
+/*   Updated: 2022/01/03 15:12:38 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
-	if (s && *s && f)
+	if (s == NULL || f == NULL)
+		return ;
+	while (s[i] != '\0')
 	{
-		while (s[i])
-		{
-			f(i, &s[i]);
-			i++;
-		}
+		f(i, s + i);
+		i++;
 	}
 }
