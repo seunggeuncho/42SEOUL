@@ -6,23 +6,13 @@
 #    By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/28 18:02:44 by seucho            #+#    #+#              #
-#    Updated: 2022/01/03 15:19:27 by seucho           ###   ########.fr        #
+#    Updated: 2022/01/06 01:26:04 by seucho           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libft.a
+NAME	= libft.a
 
-CC			= gcc
-CFLAG		= -Wall -Wextra -Werror
-
-RM			= rm -f
-
-AR			= ar
-ARFLAGS		= crs
-
-INCLUDES	= ./libft.h
-
-FILE_1	=	ft_isalpha.c	\
+SRC		=	ft_isalpha.c	\
 			ft_isdigit.c	\
 			ft_isalnum.c	\
 			ft_isascii.c	\
@@ -45,8 +35,7 @@ FILE_1	=	ft_isalpha.c	\
 			ft_atoi.c		\
 			ft_calloc.c		\
 			ft_strdup.c		\
-
-FILE_2	=	ft_substr.c		\
+			ft_substr.c		\
 			ft_strjoin.c	\
 			ft_strtrim.c	\
 			ft_split.c		\
@@ -56,9 +45,11 @@ FILE_2	=	ft_substr.c		\
 			ft_putstr_fd.c	\
 			ft_putendl_fd.c	\
 			ft_putnbr_fd.c	\
-			ft_striteri.c	\
+			ft_striteri.c	
 
-BONUS	=	ft_lstnew.c			\
+OBJ		=	$(SRC:.c=.o)
+
+BSRC	=	ft_lstnew.c			\
 			ft_lstsize.c		\
 			ft_lstadd_front.c	\
 			ft_lstadd_back.c	\
@@ -66,32 +57,35 @@ BONUS	=	ft_lstnew.c			\
 			ft_lstlast.c		\
 			ft_lstiter.c		\
 			ft_lstmap.c			\
-			ft_lstdelone.c		\
+			ft_lstdelone.c		
 
-SRCS = $(FILE_1) $(FILE_2)
+BOBJ	=	$(BSRC:.c=.o)
+CC		=	gcc
+CFLAGS	=	-Wall -Wextra -Werror
 
-OBJS = $(SRCS:.c=.o)
+ifdef WITH_BONUS
+	OBJECTS = $(OBJ) $(BOBJ)
+else
+	OBJECTS = $(OBJ)
+endif
 
-OBJS_BONUS = $(BONUS:.c=.o)
+.PHONY:	all bonus clean fclean re
 
-all : $(NAME)
+all :		$(NAME)
+
+$(NAME):	$(OBJECTS)
+	ar crs $(NAME) $(OBJECTS)
+
+bonus:
+	@make WITH_BONUS=1 all
 
 %.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
-	$(RM) $(RMFLAG) $(OBJS) $(OBJS_BONUS)
+	@rm -f $(OBJ) $(BOBJ)
 
 fclean : clean
-	$(RM) $(RMFLAG) $(NAME)
+	@rm -f $(NAME)
 
 re : fclean all
-
-$(NAME) : $(OBJS)
-	$(AR) $(ARFLAGS) $@ $^
-
-bonus : $(OBJS) $(OBJS_BONUS)
-	$(AR) $(ARFLAGS) $(NAME) $^
-
-.PHONY : all clean fclean re
-

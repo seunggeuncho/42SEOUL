@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 02:05:06 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/28 18:36:01 by seucho           ###   ########.fr       */
+/*   Updated: 2022/01/05 23:44:04 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 static int	cnt_num(int n)
 {
-	if (n == -2147483648)
-		return (10);
-	if (n < 0)
-		n *= -1;
 	if (n == 0)
 		return (0);
 	while (n != 0)
@@ -25,7 +21,7 @@ static int	cnt_num(int n)
 	return (0);
 }
 
-static void	get_num(int *sign, long long *i, int *num)
+static void	get_num(int *sign, long *i, int *num)
 {
 	if (*i == 0)
 		*num = 1;
@@ -41,10 +37,10 @@ static void	get_num(int *sign, long long *i, int *num)
 
 char	*ft_itoa(int n)
 {
-	char		*ret;
-	int			num;
-	int			sign;
-	long long	i;
+	char	*ret;
+	int		num;
+	int		sign;
+	long	i;
 
 	i = n;
 	sign = 1;

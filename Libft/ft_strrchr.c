@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 02:09:02 by seucho            #+#    #+#             */
-/*   Updated: 2021/12/28 18:31:52 by seucho           ###   ########.fr       */
+/*   Updated: 2022/01/06 01:12:04 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strrchr(const char *s, int c)
 	size_t	i;
 	char	search;
 
-	search = (unsigned int)c;
+	search = (char)c;
 	i = ft_strlen(s);
 	while (i > 0)
 	{
