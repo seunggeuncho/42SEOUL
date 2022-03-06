@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 18:10:59 by seucho            #+#    #+#             */
-/*   Updated: 2022/02/16 00:34:20 by seucho           ###   ########.fr       */
+/*   Updated: 2022/03/06 22:19:10 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,13 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	save = iter_read(save, fd);
-	if (save == NULL)
+	save = iter_read(&save, fd);
+	if (save == NULL || *save == '\0')
+	{
+		free(save);
+		save = NULL;
 		return (NULL);
+	}
 	line = get_line(save);
 	if (line == NULL)
 	{
@@ -35,33 +39,31 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-char	*iter_read(char *save, int fd)
+char	*iter_read(char **p_save, int fd)
 {
 	char	*temp;
 	char	*buf;
-	char	*new;
 	ssize_t	num_read;
 
 	buf = malloc(BUFFER_SIZE + 1);
 	if (buf == NULL)
 		return (NULL);
-	new = save;
 	num_read = 0;
-	while (new == NULL || !ft_strchr(new, '\n'))
+	while (*p_save == NULL || !ft_strchr(*p_save, '\n'))
 	{
 		num_read = read(fd, buf, BUFFER_SIZE);
 		if (num_read <= 0)
 			break ;
 		buf[num_read] = '\0';
-		temp = new;
-		new = append_str(new, buf);
+		temp = *p_save;
+		*p_save = append_str(*p_save, buf);
 		free(temp);
 	}
 	free(buf);
 	buf = NULL;
 	if (num_read < 0)
 		return (NULL);
-	return (new);
+	return (*p_save);
 }
 
 char	*get_line(char const *save)
@@ -90,7 +92,11 @@ char	*update_remain(char **save, size_t offset)
 
 	new = malloc(ft_strlen(*save + offset) + 1);
 	if (new == NULL)
+	{
+		free(*save);
+		*save = NULL;
 		return (NULL);
+	}
 	ft_strlcpy(new, *save + offset, ft_strlen(*save + offset) + 1);
 	free(*save);
 	*save = NULL;

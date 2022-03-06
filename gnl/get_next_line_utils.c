@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 18:12:47 by seucho            #+#    #+#             */
-/*   Updated: 2022/02/16 00:32:49 by seucho           ###   ########.fr       */
+/*   Updated: 2022/03/06 22:14:15 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,6 @@ size_t	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
-}
-
-char	*ft_strdup(const char *s)
-{
-	size_t	i;
-	char	*re;
-
-	re = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!re)
-		return (0);
-	i = 0;
-	while (s[i])
-	{
-		re[i] = s[i];
-		i++;
-	}
-	re[i] = 0;
-	return (re);
 }
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
@@ -69,7 +51,7 @@ char	*append_str(char const *save, char const *buf)
 		new = malloc(ft_strlen(buf) + 1);
 		if (new == NULL)
 			return (NULL);
-		new = ft_strdup(buf);
+		ft_strlcpy(new, buf, ft_strlen(buf) + 1);
 		return (new);
 	}
 	new = malloc(ft_strlen(save) + ft_strlen(buf) + 1);
