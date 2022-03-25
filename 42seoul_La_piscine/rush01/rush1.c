@@ -1,201 +1,129 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rush1.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seucho <seucho@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/17 17:39:05 by seucho            #+#    #+#             */
+/*   Updated: 2022/01/29 16:36:17 by seucho           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<unistd.h>
-#include<stdio.h>
 
-int	g_row[2][4];
-int	g_col[2][4];
-int g_space[4][4] = {{0,},{0,},{0,},{0,}};
-int	visited[4][4] = {{1,1,1,1},{1,1,1,1},{1,1,-1,1},{1,1,-1,-1}};
+int		g_row[2][4] = {0, };
+int		g_col[2][4] = {0, };
+int		g_space[4][4] = {0, };
+int		g_visited[4][4] = {0, };
+int		check_space(void);
+int		check_same(void);
+void	set_space(void);
 
-int	checking()///////맨위에거 
+void	prt_space(void)
 {
-	int	i;
-	int	j;
-	int temp;
-	int count;
-
-	i = 0;
-	j = 0;
-	while (j < 4)
-	{
-		temp = 0; ////// 첫번째 숫자 넣어주기
-		count = 0;
-		while (i < 4)
-		{
-			if (temp < g_space[i][0])
-			{
-				count++;
-				temp = g_space[i][0];
-			}
-			i++;
-		}
-		if (count != g_row[0][j])
-		{
-			return (-1);
-		}
-	}
-	return (0);
-}
-
-void	prt_space()
-{
-	int	i;
-	int j;
+	char	c;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (i < 4)
 	{
 		j = 0;
-		while(j < 4)
+		while (j < 4)
 		{
-			printf("%d ",g_space[i][j]);
+			c = g_space[i][j] + 48;
+			write(1, &c, 1);
+			if (j != 3)
+				write(1, " ", 1);
 			j++;
 		}
-		printf("\n");
+		write(1, "\n", 1);
 		i++;
 	}
 }
 
 void	dfs(int index)
 {
-	int x;
-	int y;
-	int i;
+	int	i;
 
 	i = 0;
-	x = index / 4;
-	y = index % 4;
-	if(index == 16)
-	{	//////마지막 칸이면 출력해줘야지!
-		prt_space();
-		printf("\n");
-		return;
+	if (index == 16)
+	{	
+		if (check_space() == 1 && check_same() == 1)
+		{	
+			prt_space();
+		}
+		return ;
 	}
-	if (visited[y][x] == -1)
+	if (g_visited[index / 4][index % 4] == 0)
 	{
-		while(i < 4)
+		while (i < 4)
 		{
-			visited[y][x] = 1;
-			g_space[y][x]= i+1;
+			g_visited[index / 4][index % 4] = 1;
+			g_space[index / 4][index % 4] = i + 1;
 			dfs(index + 1);
-			visited[y][x] = -1;
+			g_visited[index / 4][index % 4] = 0;
 			i++;
 		}
 	}
 	else
-	{
 		dfs(index + 1);
-	}
 }
 
-void take_row_col(char *argv)
+void	insert_num(int i, char num_word)
 {
-	int count;
-	int i;
+	if (i < 4)
+		g_row[0][i] = num_word - '0';
+	else if (i < 8)
+		g_row[1][i % 4] = num_word - '0';
+	else if (i < 12)
+		g_col[0][i % 4] = num_word - '0';
+	else if (i < 16)
+		g_col[1][i % 4] = num_word - '0';
+}
+
+int	take_row_col(char *argv)
+{
+	int	count;
+	int	i;
+	int	check;
 
 	i = 0;
+	check = 0;
 	count = 0;
-	printf("%s\n", argv);
-	
 	while (argv[count] != '\0')
 	{
-		if(argv[count] >= 48 && argv[count] <= 57)
+		if (argv[count] >= 49 && argv[count] <= 52 && check == 0)
 		{
-			if(i < 4)
-				g_row[0][i] = argv[count] - '0';
-			else if (i < 8)
-				g_row[1][i % 4] = argv[count] - '0';
-			else if (i < 12)
-				g_col[0][i % 4] = argv[count] - '0';
-			else if (i < 16)
-				g_col[1][i % 4] = argv[count] - '0';
+			insert_num(i, argv[count]);
 			i++;
+			check = 1;
 		}
+		else if (argv[count] == ' ' && check == 1)
+			check = 0;
+		else
+			return (-1);
 		count++;
 	}
-	
+	if (count != 31)
+		return (-1);
+	return (1);
 }
-
-void	set_space(char *arr, int set)
-{
-	int	cnt;
-
-	cnt = -1;
-	while (arr[++cnt])
-	{
-		if (set == 1)
-		{
-			if (arr[cnt]] == 1)
-			{
-				g_space[0][cnt] = 4;
-				g_visited[0][cnt] = 1;
-			}
-			else if (arr[cnt] == 2)
-			{
-				g_space[1][cnt] = 4;
-				g_visited[1][cnt] = 1;
-			}
-			else
-				continue ;
-		}
-		else if (set == 2)
-		{
-			if (arr[cnt] == 1)
-			{
-				g_spcae[3][cnt] = 4;
-				g_visited[3][cnt] = 1;
-			}
-			else if (arr[cnt] == 2)
-			{
-				g_space[2][cnt] = 4;
-				g_visited[2][cnt] = 1;
-			}
-			else
-				continue ;
-		}
-		else if (set == 3)
-		{
-			if (arr[cnt] == 1)
-			{
-				g_space[cnt][0] = 4;
-				g_visited[cnt][0] = 1;
-			}
-			else if (arr[cnt] == 2)
-			{
-				g_space[cnt][1] = 4;
-				g_visited[cnt][1] = 1;
-			}
-			else
-				continue ;
-		}
-		else if (set == 4)
-		{
-			if (arr[cnt] == 1)
-			{
-				g_space[cnt][3] = 4;
-				g_visited[cnt][3] = 1;
-			}
-			else if (arr[cnt] == 2)
-			{
-				g_space[cnt][2] = 4;
-				g_visited[cnt][2] = 1;
-			}
-			else
-				continue ;
-		}
-	}
-}
-
-
 
 int	main(int argc, char **argv)
 {
-	//printf("%d", argc);
-	
-	//printf("%s", argv[1]);
-	//take_row_col(argv[1]);
-	//printf("%d %d %d %d\n",g_row[0][0],g_row[0][1],g_row[0][2],g_row[0][3]);
-	//printf("%d", g_space[3][3]);
-	//dfs(0);
+	int	a;
+	int	k;
+
+	k = argc;
+	a = take_row_col(argv[1]);
+	if (a == -1)
+	{
+		write(1, "exclude", 7);
+		return (0);
+	}
+	set_space();
 	dfs(0);
-	return 0;
+	return (0);
 }
