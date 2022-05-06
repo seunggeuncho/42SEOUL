@@ -6,7 +6,7 @@
 /*   By: seucho <seucho@42seuol.student.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 14:02:04 by seucho            #+#    #+#             */
-/*   Updated: 2022/05/06 14:37:08 by seucho           ###   ########.fr       */
+/*   Updated: 2022/05/06 15:40:16 by seucho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_putnbr(int n)
 	i = 0;
 	if (n == -2147483648)
 	{
-		i += (ft_putstr("-2147483648"));
+		i += (ft_putstr("-214748364"));
 		n = 8;
 	}
 	if (n < 0)
@@ -81,11 +81,11 @@ int	ft_hexa(unsigned long ul, int n)
 	int	i;
 
 	i = 0;
-	if (ul % 16 >= 16)
+	if (ul >= 16)
 	{
 		i += ft_hexa(ul / 16, n);
 	}
-	if (ul % 16 / 10)
+	if (ul % 16 < 10)
 	{
 		i += ft_putchar((ul % 16) + 48);
 	}
